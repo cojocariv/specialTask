@@ -10,20 +10,9 @@ class Roman implements Calculator{
         int[] numbers = {1000, 500, 100, 50, 10, 5, 1};
         String symbols = "MDCLXVI";
 
-
-        final int MAX = 3999;
         String roman = null;
-//        try {
+
         roman = nm;
-//            roman = reader.readLine();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            reader.close(); // don't want a resource leak
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
         roman = roman.toUpperCase();
 
@@ -31,24 +20,16 @@ class Roman implements Calculator{
             System.out.println("Impossible to convert. Wrong roman numeral");
         }
 
-        int i = 0; // position in the Roman string
+        int i = 0;
 
-        int current = 0; // the current Roman numeral character to Arabic
-        // conversion
-
-        int previous = 0; // start previous at zero, that way when
-        // current is greater than previous in the first
-        // run, nothing will be subtracted from current
-
-        int arabic = 0; // Arabic numeral equivalent of the part of the string
-        // that has been converted so far
+        int current = 0;
+        int previous = 0;
+        int arabic = 0;
 
         while (i < roman.length()) {
 
-            char letter = roman.charAt(i); // letter at the current position in
-            // the string
+            char letter = roman.charAt(i);
 
-            // switch statement is easier to read than if - else if - else
             switch (letter) {
                 case ('I'):
                     current = 1;
@@ -73,29 +54,20 @@ class Roman implements Calculator{
                     break;
             }
 
-
             if (current > previous) {
-                // subtract previous * 2 because previous was added to arabic
-                // once already
+
                 arabic += current - (previous * 2);
             } else {
-                // if current is less than or equal to previous then add it to
-                // arabic
+
                 arabic += current;
             }
 
-            previous = current; // set previous equal to current to check
-            // for less-than on next iteration
+            previous = current;
 
-            i += 1; // move on to next position in the string
+            i += 1;
 
-        } // end while
-
-        // print the Arabic conversion after the loop is done
-
+        }
         return arabic;
-
-
 
         /*
 
